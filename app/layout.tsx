@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </div>
 
-          <ThemeToggle className="absolute top-6 right-6" />
+          <ThemeToggle className="absolute flex items-center justify-center gap-4 top-6 right-6" />
         </ThemeProvider>
       </body>
     </html>

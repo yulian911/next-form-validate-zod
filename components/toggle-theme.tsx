@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { ListTodo, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
@@ -10,12 +10,27 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Home } from 'lucide-react';
 
 export function ThemeToggle({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const { setTheme } = useTheme();
 
+  const pathname = usePathname();
+
   return (
     <div className={className} {...props}>
+      {pathname === '/' ? (
+        <Link href="/list">
+          <ListTodo />
+        </Link>
+      ) : (
+        <Link href="/">
+          <Home />
+        </Link>
+      )}
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon">

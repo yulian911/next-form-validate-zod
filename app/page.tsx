@@ -37,12 +37,14 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 type Input = z.infer<typeof registerSchema>;
 
 export default function Home() {
   const [formStep, setFormStep] = useState(0);
+  const router = useRouter();
   const { toast } = useToast();
   const form = useForm<Input>({
     resolver: zodResolver(registerSchema),
@@ -73,13 +75,13 @@ export default function Home() {
     } catch (error) {
       console.log(error);
     }
-    alert(JSON.stringify(data, null, 4));
+    router.replace('/list');
   }
   return (
     <main className="flex flex-col items-center justify-between min-h-screen p-24">
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>Register</CardTitle>
+          <CardTitle>Add person</CardTitle>
           <CardDescription>Start the journey with us today.</CardDescription>
         </CardHeader>
         <CardContent>
